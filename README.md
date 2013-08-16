@@ -19,8 +19,11 @@ var instances = new useful.Instances(objs, constructor, cfgs);
 ```
 
 **instances : {object}** - This object gets filled with all the individual instances.
+
 **objs : {DOM elements}** - A collection of DOM elements. i.e. document.getElementsByTagName('A');
+
 **constructor : {function}** - A constructor for the functionality of the following format: MyConstructor(obj, cfg).
+
 **cfg : {object}** - An optional object of name/value pairs that gets passed into every instance of the constructor as configuration data.
 
 #### start
