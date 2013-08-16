@@ -12,7 +12,7 @@ This include can be added to the header or placed inline before the script is in
 <script src="./js/useful.instances.js"></script>
 ```
 
-### Functions
+## Functions
 
 ```javascript
 var instances = new useful.Instances(objs, constructor, cfgs);
@@ -26,7 +26,7 @@ var instances = new useful.Instances(objs, constructor, cfgs);
 
 **cfg : {object}** - An optional object of name/value pairs that gets passed into every instance of the constructor as configuration data.
 
-#### start
+### start
 
 ```javascript
 instances.start();
@@ -34,7 +34,7 @@ instances.start();
 
 Executes the .start() method of each instance of the constructor.
 
-#### wait
+### wait
 
 ```javascript
 instances.wait();
@@ -42,7 +42,7 @@ instances.wait();
 
 Waits until the document is complete and then executes the .start() method of each instance of the constructor.
 
-#### getAll
+### getAll
 
 ```javascript
 instances.getAll();
@@ -50,7 +50,7 @@ instances.getAll();
 
 Returns an all instances in an array.
 
-#### getByIndex
+### getByIndex
 
 ```javascript
 instances.getByIndex(index);
@@ -60,7 +60,7 @@ Returns a numbered instance.
 
 **index : {integer}** - The number of the instance.
 
-#### getByObject
+### getByObject
 
 ```javascript
 instances.getByObject(object);
