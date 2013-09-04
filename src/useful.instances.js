@@ -41,7 +41,7 @@
 			return null;
 		};
 		// returns the constructs
-		this.getAll = function (element) {
+		this.getAll = function () {
 			return this.constructs;
 		};
 		// returns the object that goes with the element
@@ -52,38 +52,6 @@
 		this.getByIndex = function (index) {
 			return this.constructs[index];
 		};
-	}
-
-	/*
-		useful.polyfills.js
-	*/
-
-	// private functions
-	var polyfills = polyfills || {};
-
-	// allow document.querySelectorAll (https://gist.github.com/connrs/2724353)
-	polyfills.querySelectorAll = function () {
-		if (!document.querySelectorAll) {
-			document.querySelectorAll = function (a) {
-				var b = document, c = b.documentElement.firstChild, d = b.createElement("STYLE");
-				return c.appendChild(d), b.__qsaels = [], d.styleSheet.cssText = a + "{x:expression(document.__qsaels.push(this))}", window.scrollBy(0, 0), b.__qsaels;
-			};
-		}
 	};
-
-	// allows Object.create (https://gist.github.com/rxgx/1597825)
-	polyfills.objectCreate = function () {
-		if (typeof Object.create !== "function") {
-			Object.create = function (original) {
-				function Clone() {}
-				Clone.prototype = original;
-				return new Clone();
-			};
-		}
-	};
-
-	// for immediate use
-	polyfills.querySelectorAll();
-	polyfills.objectCreate();
 
 }(window.useful = window.useful || {}));
