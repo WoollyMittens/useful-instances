@@ -2,7 +2,7 @@
 
 A library of useful functions to ease working with instances of constructors.
 
-Try the <a href="http://www.woollymittens.nl/useful/default.php?url=instances">tests</a>.
+Try the <a href="http://www.woollymittens.nl/useful/default.php?url=useful-instances">tests</a>.
 
 ## How to include the script
 
