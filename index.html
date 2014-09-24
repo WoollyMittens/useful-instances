@@ -52,14 +52,17 @@
 									this.cfg = cfg;
 									this.start = function () {
 										this.obj.onclick = this.onclicked();
-									}
+									};
 									this.onclicked = function () {
-										var context = this;
+										var _this = this;
 										return function () {
-											context.obj.style.color = context.cfg.color;
-											context.obj.innerHTML = context.cfg.color;
+											_this.obj.style.color = _this.cfg.color;
+											_this.obj.innerHTML = _this.cfg.color;
 										}
-									}
+									};
+									this.reportColor = function () {
+										return this.cfg.color;
+									};
 									this.start();
 								}
 
