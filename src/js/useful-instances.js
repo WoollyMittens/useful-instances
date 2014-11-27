@@ -1,55 +1,56 @@
 /*
 	Source:
-	van Creij, Maurice (2012). "useful.instances.js: A library of useful functions to ease working with instances of constructors.", version 20121126, http://www.woollymittens.nl/.
+	van Creij, Maurice (2014). "useful.instances.js: A library of useful functions to ease working with instances of constructors.", version 20141127, http://www.woollymittens.nl/.
 
 	License:
 	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
 */
 
-// public object
-var useful = useful || {};
 
-(function(){
+	// create the constructor if needed
+	var useful = useful || {};
+	useful.Instances = useful.Instances || function () {};
 
-	// Invoke strict mode
-	"use strict";
-
-	// public functions
-	useful.Instances = function (objs, constructor, cfg) {
+	// extend the constructor
+	useful.Instances.prototype.init = function (cfg) {
 		// properties
-		this.objs = objs;
-		this.constructor = constructor;
+		"use strict";
 		this.cfg = cfg;
+		this.elements = cfg.elements;
+		this.constructor = cfg.constructor;
 		this.constructs = [];
-		// starts and stores an instance of the constructor for every element
-		this.start = function () {
-			for (var a = 0, b = this.objs.length; a < b; a += 1) {
-				// store a constructed instance with cloned cfg object
-				this.constructs[a] = new this.constructor(this.objs[a], Object.create(this.cfg));
+		// methods
+		this.each = function () {
+			var _cfg;
+			// for all elements
+			for (var a = 0, b = this.elements.length; a < b; a += 1) {
+				// clone the configuration
+				_cfg = Object.create(this.cfg);
+				// insert the current element
+				_cfg.element = this.elements[a];
+				// delete the constructor from the clone
+				delete _cfg.constructor;
+				delete _cfg.elements;
+				// start a new instance of the object
+				this.constructs.push(new this.constructor(_cfg, this));
 			}
-			// disable the start function so it can't be started twice
-			this.start = function () {};
-			// empty the timeout
-			return null;
 		};
-		// returns the constructs
 		this.getAll = function () {
 			return this.constructs;
 		};
-		// returns the object that goes with the element
 		this.getByObject = function (element) {
 			return this.constructs[this.constructs.indexOf(element)];
 		};
-		// returns the object that goes with the index
 		this.getByIndex = function (index) {
 			return this.constructs[index];
 		};
-		this.start();
+		// go
+		this.each();
+		this.init = function () {};
+		return this;
 	};
 
 	// return as a require.js module
 	if (typeof module !== 'undefined') {
 		exports = module.exports = useful.Instances;
 	}
-
-})();

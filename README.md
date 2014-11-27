@@ -23,26 +23,20 @@ To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5
 ## How to start the script
 
 ```javascript
-var instances = new useful.Instances(objs, constructor, cfgs);
+var instances = new useful.Instances().init({
+	'elements' : document.querySelectorAll('#instance-test span'),
+	'constructor' : ChangeColor,
+	'foo' : 'bar'
+});
 ```
 
-**instances : {object}** - This object gets filled with all the individual instances.
+**elements : {DOM elements}** - A collection of DOM elements. i.e. document.getElementsByTagName('A');
 
-**objs : {DOM elements}** - A collection of DOM elements. i.e. document.getElementsByTagName('A');
+**constructor : {function}** - A constructor for the functionality of the following format: MyConstructor(cfg, parent).
 
-**constructor : {function}** - A constructor for the functionality of the following format: MyConstructor(obj, cfg).
-
-**cfg : {object}** - An optional object of name/value pairs that gets passed into every instance of the constructor as configuration data.
+**name : {value}** - Any number of other name:value pairs to be passed to the constructor.
 
 ## How to control the script
-
-### wait
-
-```javascript
-instances.wait();
-```
-
-Waits until the document is complete and then executes the .start() method of each instance of the constructor.
 
 ### getAll
 
