@@ -18,7 +18,7 @@ describe('Expected behaviours of "useful-instances"', function(){
             .url(path)
             .execute(function () {
 
-                return [instances.getByIndex(0).cfg.color, instances.getByIndex(1).cfg.color];
+                return [instances[0].cfg.color, instances[1].cfg.color];
 
             }, function (err, result) {
 

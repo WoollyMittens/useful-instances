@@ -36,36 +36,6 @@ var instances = new useful.Instances().init({
 
 **name : {value}** - Any number of other name:value pairs to be passed to the constructor.
 
-## How to control the script
-
-### getAll
-
-```javascript
-instances.getAll();
-```
-
-Returns an all instances in an array.
-
-### getByIndex
-
-```javascript
-instances.getByIndex(index);
-```
-
-Returns a numbered instance.
-
-**index : {integer}** - The number of the instance.
-
-### getByObject
-
-```javascript
-instances.getByObject(object);
-```
-
-Returns an instance associated with the object.
-
-**object : {DOM element}** - One of the DOM elements to make the instances.
-
 ## How to build the script
 
 This project uses node.js from http://nodejs.org/

@@ -287,50 +287,41 @@ var useful = useful || {};
 */
 
 
-	// create the constructor if needed
-	var useful = useful || {};
-	useful.Instances = useful.Instances || function () {};
+// create the constructor if needed
+var useful = useful || {};
+useful.Instances = useful.Instances || function () {};
 
-	// extend the constructor
-	useful.Instances.prototype.init = function (cfg) {
-		// properties
-		"use strict";
-		this.cfg = cfg;
-		this.elements = cfg.elements;
-		this.constructor = cfg.constructor;
-		this.constructs = [];
-		// methods
-		this.each = function () {
-			var _cfg;
-			// for all elements
-			for (var a = 0, b = this.elements.length; a < b; a += 1) {
-				// clone the configuration
-				_cfg = Object.create(this.cfg);
-				// insert the current element
-				_cfg.element = this.elements[a];
-				// delete the constructor from the clone
-				delete _cfg.constructor;
-				delete _cfg.elements;
-				// start a new instance of the object
-				this.constructs.push(new this.constructor(_cfg, this));
-			}
-		};
-		this.getAll = function () {
-			return this.constructs;
-		};
-		this.getByObject = function (element) {
-			return this.constructs[this.constructs.indexOf(element)];
-		};
-		this.getByIndex = function (index) {
-			return this.constructs[index];
-		};
-		// go
-		this.each();
-		this.init = function () {};
-		return this;
+// extend the constructor
+useful.Instances.prototype.init = function (cfg) {
+	// properties
+	"use strict";
+	// methods
+	this.only = function (cfg) {
+		// start an instance of the script
+		return new this.Main(cfg, this);
 	};
+	this.each = function (cfg) {
+		var _cfg, instances = [];
+		// for all element
+		for (var a = 0, b = cfg.elements.length; a < b; a += 1) {
+			// clone the cfguration
+			_cfg = Object.create(cfg);
+			// insert the current element
+			_cfg.element = cfg.elements[a];
+			// delete the list of elements from the clone
+			delete _cfg.elements;
+			delete _cfg.constructor;
+			// start a new instance of the object
+			instances[a] = new cfg.constructor(_cfg, this);
+		}
+		// return the instances
+		return instances;
+	};
+	// return a single or multiple instances of the script
+	return (cfg.elements) ? this.each(cfg) : this.only(cfg);
+};
 
-	// return as a require.js module
-	if (typeof module !== 'undefined') {
-		exports = module.exports = useful.Instances;
-	}
+// return as a require.js module
+if (typeof module !== 'undefined') {
+	exports = module.exports = useful.Instances;
+}

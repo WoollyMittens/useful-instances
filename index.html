@@ -70,13 +70,13 @@
 								var instances = new useful.Instances().init({
 									'elements' : document.querySelectorAll('#instance-test span'),
 									'constructor' : ChangeColor,
-									'color':'red'
+									'color' : 'red'
 								});
 
 								// change the colour property in each of the separate instances
-								instances.getByIndex(0).cfg.color = 'Red';
-								instances.getByIndex(1).cfg.color = 'Green';
-								instances.getByIndex(2).cfg.color = 'Blue';
+								instances[0].cfg.color = 'Red';
+								instances[1].cfg.color = 'Green';
+								instances[2].cfg.color = 'Blue';
 
 							</script>
 						</dd>
