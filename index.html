@@ -50,8 +50,9 @@
 								var ChangeColor = function (cfg) {
 									this.cfg = cfg;
 									this.obj = cfg.element;
-									this.start = function () {
+									this.init = function () {
 										this.obj.onclick = this.onclicked();
+										return this;
 									};
 									this.onclicked = function () {
 										var _this = this;
@@ -63,7 +64,6 @@
 									this.reportColor = function () {
 										return this.cfg.color;
 									};
-									this.start();
 								}
 
 								// create instances of the constructor for all the elements

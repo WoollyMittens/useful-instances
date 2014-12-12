@@ -292,33 +292,33 @@ var useful = useful || {};
 useful.Instances = useful.Instances || function () {};
 
 // extend the constructor
-useful.Instances.prototype.init = function (cfg) {
+useful.Instances.prototype.init = function (config) {
 	// properties
 	"use strict";
 	// methods
-	this.only = function (cfg) {
+	this.only = function (config) {
 		// start an instance of the script
-		return new this.Main(cfg, this);
+		return new this.Main(config, this).init();
 	};
-	this.each = function (cfg) {
-		var _cfg, instances = [];
+	this.each = function (config) {
+		var _config, _context = this, instances = [];
 		// for all element
-		for (var a = 0, b = cfg.elements.length; a < b; a += 1) {
-			// clone the cfguration
-			_cfg = Object.create(cfg);
+		for (var a = 0, b = config.elements.length; a < b; a += 1) {
+			// clone the configuration
+			_config = Object.create(config);
 			// insert the current element
-			_cfg.element = cfg.elements[a];
+			_config.element = config.elements[a];
 			// delete the list of elements from the clone
-			delete _cfg.elements;
-			delete _cfg.constructor;
+			delete _config.elements;
+			delete _config.constructor;
 			// start a new instance of the object
-			instances[a] = new cfg.constructor(_cfg, this);
+			instances[a] = new config.constructor(_config, _context).init();
 		}
 		// return the instances
 		return instances;
 	};
 	// return a single or multiple instances of the script
-	return (cfg.elements) ? this.each(cfg) : this.only(cfg);
+	return (config.elements) ? this.each(config) : this.only(config);
 };
 
 // return as a require.js module
