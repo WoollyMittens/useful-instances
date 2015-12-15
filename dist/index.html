@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>useful-instances.js: A library of useful functions to ease working with instances of constructors.</title>
+		<style>
+			html { font-family:Sans-Serif; font-size:75%; height:100%; }
+			body { _height:100%; line-height:180%; margin:0; min-height:100%; padding:1%; }
+			.example { max-width:960px; margin:0 auto; padding:0; clear:both; }
+			.example > article, .example > aside { width:98%; padding:2%; }
+			.example-left > article, .example-left > aside { width:48%; padding:1%; float:left; }
+			.example-right > article, .example-right > aside { width:48%; padding:1%; float:right; }
+		</style>
+		<!--[if lte IE 9]>
+			<meta http-equiv="imagetoolbar" content="no"/>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+			<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+			<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<section class="example example-right">
+			<article>
+				<h2>Instances Library</h2>
+				<p>A library of useful functions to ease working with instances of constructors.</p>
+				<p><a class="button downloadButton" href="http://github.com/WoollyMittens/useful-instances" target="_blank">Download (GitHub)</a></p>
+			</article>
+			<aside>
+
+				<!-- Cut below this -->
+				<style>@import url("./css/useful-instances.css");</style>
+				<script src="./js/useful-instances.js"></script>
+				<div class="useful-tests">
+					<p>
+						The output of these tests is reported using <strong>console.log();</strong>.<br/>
+						Be sure to open the developer console first.
+					</p>
+					<dl>
+						<dt>useful.instances</dt>
+						<dd>
+							<p id="instance-test">
+								<span>Click me</span> |
+								<span>Click me</span> |
+								<span>Click me</span>
+							</p>
+							<script>
+
+								// this is a dummy constructor
+								var ChangeColor = function (cfg) {
+									this.cfg = cfg;
+									this.obj = cfg.element;
+									this.init = function () {
+										this.obj.onclick = this.onclicked();
+										return this;
+									};
+									this.onclicked = function () {
+										var _this = this;
+										return function () {
+											_this.obj.style.color = _this.cfg.color;
+											_this.obj.innerHTML = _this.cfg.color;
+										}
+									};
+									this.reportColor = function () {
+										return this.cfg.color;
+									};
+								}
+
+								// create instances of the constructor for all the elements
+								var instances = new useful.Instances().init({
+									'elements' : document.querySelectorAll('#instance-test span'),
+									'constructor' : ChangeColor,
+									'color' : 'red'
+								});
+
+								// change the colour property in each of the separate instances
+								instances[0].cfg.color = 'Red';
+								instances[1].cfg.color = 'Green';
+								instances[2].cfg.color = 'Blue';
+
+							</script>
+						</dd>
+					</dl>
+				</div>
+				<!-- Cut above this -->
+
+			</aside>
+		</section>
+	</body>
+</html>

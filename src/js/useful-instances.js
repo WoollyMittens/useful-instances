@@ -6,20 +6,24 @@
 	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
 */
 
-
 // create the constructor if needed
 var useful = useful || {};
 useful.Instances = useful.Instances || function () {};
 
 // extend the constructor
 useful.Instances.prototype.init = function (config) {
-	// properties
+
+	// PROPERTIES
+	
 	"use strict";
-	// methods
+
+	// METHODS
+	
 	this.only = function (config) {
 		// start an instance of the script
 		return new this.Main(config, this).init();
 	};
+	
 	this.each = function (config) {
 		var _config, _context = this, instances = [];
 		// for all element
@@ -37,8 +41,11 @@ useful.Instances.prototype.init = function (config) {
 		// return the instances
 		return instances;
 	};
-	// return a single or multiple instances of the script
+
+	// START
+
 	return (config.elements) ? this.each(config) : this.only(config);
+
 };
 
 // return as a require.js module
