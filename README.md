@@ -1,4 +1,4 @@
-# useful.instances.js: Instances Library
+# instances.js: Instances Library
 
 A library of useful functions to ease working with instances of constructors.
 
@@ -9,24 +9,16 @@ Try the <a href="http://www.woollymittens.nl/default.php?url=useful-instances">t
 This include can be added to the header or placed inline before the script is invoked.
 
 ```html
-<script src="./js/useful-instances.js"></script>
-```
-
-To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5.js*.
-
-```html
-<!--[if lte IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+<script src="./js/instances.js"></script>
 ```
 
 ## How to start the script
 
 ```javascript
-var instances = new useful.Instances().init({
-	'elements' : document.querySelectorAll('#instance-test span'),
-	'constructor' : ChangeColor,
-	'foo' : 'bar'
+var instances = new Instances({
+	'elements': document.querySelectorAll('#instance-test span'),
+	'constructor': ChangeColor,
+	'foo': 'bar'
 });
 ```
 
@@ -50,15 +42,6 @@ The following commands are available for development:
 + `gulp watch` - Continuously recompiles updated files during development sessions.
 + `gulp serve` - Serves the project on a temporary web server at http://localhost:8500/.
 + `gulp php` - Serves the project on a temporary php server at http://localhost:8500/.
-
-## How to test the script
-
-These test uses Selenium from http://docs.seleniumhq.org/
-
-+ `npm install webdriverjs` - Installs the webdriver prerequisite.
-+ `npm install mocha -g` - Installs the prerequisite test framework.
-+ `java -jar /Applications/Selenium/selenium-server-standalone-2.42.2.jar` - Starts Selenium.
-+ `mocha` - Runs the automated tests.
 
 ## License
 
