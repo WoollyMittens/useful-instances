@@ -38,6 +38,5 @@ var Instances = function (config) {
 };
 
 // return as a require.js module
-if (typeof module !== 'undefined') {
-	exports = module.exports = Instances;
-}
+if (typeof define != 'undefined') define([], function () { return Instances });
+if (typeof module != 'undefined') module.exports = Instances;
